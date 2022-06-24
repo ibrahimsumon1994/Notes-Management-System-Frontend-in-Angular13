@@ -1,0 +1,48 @@
+<mat-card class="container mat-elevation-z9">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" class="tab">
+      <div fxLayout="row wrap" fxLayoutGap="10px" fxFlex="100%" fxFlex.sm="100%" fxLayout.lt-sm="column"
+        fxFlex.xs="100%" fxLayoutAlign="flex-start">
+
+        <mat-form-field appearance="outline" fxFlex="1 1 calc(100% - 10px)" fxFlex.lt-md="1 1 calc(100% - 10px)"
+          fxFlex.lt-sm="100%" fxFlex.xs="100%" class="from-color">
+          <mat-label class="label-padding">Name</mat-label>
+          <input class="label-padding" matInput placeholder="Name" formControlName="name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="1 1 calc(100% - 10px)" fxFlex.lt-md="1 1 calc(100% - 10px)"
+          fxFlex.lt-sm="100%" fxFlex.xs="100%" class="from-color">
+          <mat-label class="label-padding">Email Address</mat-label>
+          <input class="label-padding" matInput placeholder="Email Address" formControlName="email" required />
+          <mat-error *ngIf="email?.errors">Enter a valid email address</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="1 1 calc(100% - 10px)" fxFlex.lt-md="1 1 calc(100% - 10px)"
+          fxFlex.lt-sm="100%" fxFlex.xs="100%" class="from-color">
+          <mat-label class="label-padding">Date of Birth</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" required >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" fxFlex="1 1 calc(100% - 10px)" fxFlex.lt-md="1 1 calc(100% - 10px)"
+          fxFlex.lt-sm="100%" fxFlex.xs="100%" class="from-color">
+            <mat-label class="label-padding">Enter New Password</mat-label>
+            <input type="password" class="label-padding" type="text" style="-webkit-text-security: disc;"
+                matInput placeholder="New Password" formControlName="password" />
+                    <mat-error *ngIf="password?.errors?.['required'] && password?.touched">Specify a password</mat-error>
+                    <mat-error *ngIf="password?.errors?.['minlength']">Must contain at least 8 characters</mat-error>
+                    <mat-error *ngIf="password?.errors?.['maxlength']">Can't exceed 14 characters</mat-error>
+                    <mat-error *ngIf="password?.errors?.['pattern']">Must contain atleast one lowercase letter, one uppercase letter and one special character</mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <div style="padding-top: 50px;" fxLayoutAlign="end" fxFlex="1 1 calc(100% - 10px)" fxFlex.lt-md="1 1 calc(100% - 10px)" fxFlex.lt-sm="100%"
+          fxFlex.xs="100%" class="from-color" fxLayoutAlign="center" fxLayoutGap="10px">
+          <button class="form-button" type="submit" [disabled]="form.invalid">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

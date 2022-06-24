@@ -1,0 +1,17 @@
+.mat-card {
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    display:block;
+    position: relative;
+    padding:16px;
+    margin-top: 10%;
+    border-radius: 10px;
+    width: 30%;
+    height: 30%;
+}
+.form-button{
+    background-color: #01ADE4;
+    border-radius: 15px;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+    color: #ffffff;
+}
