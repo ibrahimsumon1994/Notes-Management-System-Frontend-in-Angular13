@@ -38,8 +38,11 @@
         <br/><br/>
         <div style="padding-top: 50px;" fxLayoutAlign="end" fxFlex="1 1 calc(100% - 10px)" fxFlex.lt-md="1 1 calc(100% - 10px)" fxFlex.lt-sm="100%"
           fxFlex.xs="100%" class="from-color" fxLayoutAlign="center" fxLayoutGap="10px">
-          <button class="form-button" type="submit" [disabled]="form.invalid">
+          <button class="form-button" style="border: none;" (click)="onSubmit()" [disabled]="form.invalid">
             Submit
+          </button>
+          <button class="form-button" style="border: none; background-color: yellowgreen;" (click)="backToLogin()" >
+            Back to Login
           </button>
         </div>
       </div>

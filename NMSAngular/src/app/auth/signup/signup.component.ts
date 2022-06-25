@@ -77,4 +77,7 @@ export class SignupComponent implements OnInit {
         );
     }
   }
+  backToLogin() {
+    this.router.navigate(['/auth']);
+  }
 }

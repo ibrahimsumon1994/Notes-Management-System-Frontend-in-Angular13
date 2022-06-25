@@ -1,0 +1,86 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" class="tab">
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxFlex="100%" fxFlex.sm="100%" fxLayout.lt-sm="column"
+      fxFlex.xs="100%" fxLayoutAlign="flex-start">
+    <mat-card class="mat-elevation-z8 from-color" appearance="outline" fxFlex="1 1 calc(50% - 10px)"
+      fxFlex.lt-md="1 1 calc(50% - 10px)" fxFlex.lt-sm="100%" fxFlex.xs="100%">
+      <div fxLayout="row" >
+        <div fxLayoutAlign=" start center" fXFlex fxFlex="30" fxFlexOffset="1" >
+          <h1>
+            Recent Todo's
+          </h1>
+        </div>
+        <div fXFlex fxFlex="68" fxLayoutAlign="end center" fxLayoutGap="5px"  >
+          <mat-radio-group name="todoList"  fxLayout="row">
+            <mat-radio-button *ngFor="let op of listOfOptions.list; let i = index" [value]="i" [checked]="i === 0"
+            name="todoList" (change)="setFilterIdForTodo(op.ID)"> {{ op.name }} </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div>
+        <table mat-table [dataSource]="dataSourceTodo">
+
+          <ng-container matColumnDef="Serial No">
+            <th mat-header-cell *matHeaderCellDef> Serial No </th>
+            <td mat-cell *matCellDef="let element; let i = index;"> {{ paginatorTodo.pageIndex * paginatorTodo.pageSize + (i + 1) }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Note Details">
+            <th mat-header-cell *matHeaderCellDef> Note Details </th>
+            <td mat-cell *matCellDef="let element"> {{element.noteDetails}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Due Time">
+            <th mat-header-cell *matHeaderCellDef> Due Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.time | date:"medium"}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsTodo"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsTodo;"></tr>
+        </table>
+        <mat-paginator [length]="lengthTodo" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+    </mat-card>
+    <mat-card class="mat-elevation-z8 from-color" appearance="outline" fxFlex="1 1 calc(50% - 10px)"
+      fxFlex.lt-md="1 1 calc(50% - 10px)" fxFlex.lt-sm="100%" fxFlex.xs="100%">
+      <div fxLayout="row" >
+        <div fxLayoutAlign=" start center" fXFlex fxFlex="30" fxFlexOffset="1" >
+          <h1>
+            Recent Reminder's
+          </h1>
+        </div>
+        <div fXFlex fxFlex="68" fxLayoutAlign="end center" fxLayoutGap="5px"  >
+          <mat-radio-group name="reminderList"  fxLayout="row">
+            <mat-radio-button *ngFor="let op of listOfOptions.list; let i = index" [value]="i" [checked]="i === 0"
+            name="reminderList" (change)="setFilterIdForReminder(op.ID)" > {{ op.name }} </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div>
+        <table mat-table [dataSource]="dataSourceReminder">
+
+          <ng-container matColumnDef="Serial No">
+            <th mat-header-cell *matHeaderCellDef> Serial No </th>
+            <td mat-cell *matCellDef="let element; let i = index;"> {{ paginatorTodo.pageIndex * paginatorTodo.pageSize + (i + 1) }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Note Details">
+            <th mat-header-cell *matHeaderCellDef> Note Details </th>
+            <td mat-cell *matCellDef="let element"> {{element.noteDetails}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Reminder Time">
+            <th mat-header-cell *matHeaderCellDef> Reminder Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.time | date:"medium"}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsReminder"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsReminder;"></tr>
+        </table>
+        <mat-paginator [length]="lengthReminder" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div style="padding-top: 10px;">
+  <app-note-list></app-note-list>
+</div>

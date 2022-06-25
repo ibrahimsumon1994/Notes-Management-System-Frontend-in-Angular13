@@ -1,0 +1,68 @@
+<mat-card class="container-mat-card mat-elevation-z8">
+  <div fxLayout="row" >
+    <div fxLayoutAlign=" start center" fXFlex fxFlex="20" fxFlexOffset="1" >
+      <h1>
+        Notes History
+      </h1>
+    </div>
+    <div fXFlex fxFlex="78" fxLayoutAlign="end center" fxLayoutGap="5px"  >
+      <div matTooltip="Search">
+        <input matInput (keyup)="applyFilter($any($event.target).value)" placeholder="Search here" autocomplete="off">
+      </div>
+      <div>
+        <button class="button" mat-raised-button color="primary" (click)="addNote()" matTooltip="Add Note">
+          <mat-icon>add_circle</mat-icon>
+          ADD Note
+        </button>
+      </div>
+    </div>
+  </div>
+  <div >
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="Checkbox">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (change)="changeTodoStatus($event, row.noteId)" *ngIf="row.status == 'Complete' && row.noteType =='Todo'" [checked]="true"></mat-checkbox>
+          <mat-checkbox (change)="changeTodoStatus($event, row.noteId)" *ngIf="(row.status == null || row.status == '') && row.noteType =='Todo'" [checked]="false"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Serial No">
+        <th mat-header-cell *matHeaderCellDef> Serial No </th>
+        <td mat-cell *matCellDef="let element; let i = index;"> {{ paginator.pageIndex * paginator.pageSize + (i + 1) }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Type of Note">
+        <th mat-header-cell *matHeaderCellDef> Type of Note </th>
+        <td mat-cell *matCellDef="let element"> {{element.noteType}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Note Details">
+        <th mat-header-cell *matHeaderCellDef> Note Details </th>
+        <td mat-cell *matCellDef="let element"> {{element.noteDetails}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Reminder / Due Time">
+        <th mat-header-cell *matHeaderCellDef> Reminder / Due Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.time | date:"medium"}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Bookmarked Url">
+        <th mat-header-cell *matHeaderCellDef> Bookmarked Url </th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="" (click)="goToLink(element.bookmarkUrl)" style="cursor: pointer; text-decoration: underline; color: cornflowerblue;"> {{element.bookmarkUrl}} </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="length" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>

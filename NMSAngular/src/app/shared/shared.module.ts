@@ -41,6 +41,9 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { NavMenuItemComponent } from './components/nav-menu-item/nav-menu-item.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
 
 @NgModule({
@@ -81,7 +84,15 @@ import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.com
     MatStepperModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule, 
+    MatMomentDateModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [
